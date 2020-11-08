@@ -42,6 +42,10 @@ You can change some paramters using URL query.
 - cellsize: uint = 8
 - boundary: 'periodic' | 'reflective' | 'true' | 'false' = 'periodic'
 
+### Related Project
+
+[game-of-life](https://github.com/ma38su/game-of-life)
+
 ### Reference
 
 - Joel L. Schiff著, 梅雄博司, セルオートマトン, 共立出版 (2011) 
