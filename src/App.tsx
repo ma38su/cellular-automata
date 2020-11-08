@@ -57,6 +57,11 @@ type Props = {
   interval: number;
 }
 
+type State = {
+  cells: boolean[];
+  comps: JSX.Element[];
+};
+
 function App(props: Props) {
   const { initType,
     rule,
@@ -69,31 +74,37 @@ function App(props: Props) {
   const maxSeq = max < 1000 ? max : 1000;
 
   const [ stateMachines ] = React.useState(toStateMachine(rule));
-  const [ cellTable, setCellTable ] = React.useState<boolean[][]>([initialState(initType, batch, length)]);
+  const [ state, setState ] = React.useState<State>({
+    cells: initialState(initType, batch, length),
+    comps: [],
+  });
 
   React.useEffect(() => {
+    console.log("effect");
     const id = setInterval(() => {
-      setCellTable(table => {
-        if (table.length > maxSeq) {
-          clearInterval(id);
-        }
-
-        const lastStates = table[table.length - 1];
-        const newStates = [...lastStates.keys()].map(i => {
-          return nextState(stateMachines, lastStates, i);
-        });
-        return [...table, newStates];
+      setState(prev => {
+        const { cells, comps } = prev;
+        const newCells = [...cells.keys()]
+          .map(i => nextState(stateMachines, cells, i));
+        const i = comps.length;
+        return {
+          comps:[...comps,
+          <CellAutomata
+            y={cellSize * i}
+            size={cellSize}
+            state={newCells}
+            key={i}
+          />],
+          cells: newCells,
+        };
       });
     }, interval);
     return () => clearInterval(id);
   }, [stateMachines, maxSeq, interval]);
+
   return (
     <svg>
-      {
-        cellTable.map((stateArray, i) => {
-          return <CellAutomata y={cellSize * i} size={cellSize} state={stateArray} key={i} />;
-        })
-      }
+      { state.comps }
     </svg>
   );
 }

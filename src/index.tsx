@@ -34,7 +34,7 @@ const rule = parseInt(queries['rule'] ?? '90');
 const length = parseInt(queries['length'] ?? '200');
 const batch = parseInt(queries['batch'] ?? '1');
 const max = parseInt(queries['max'] ?? '200');
-const interval = parseInt(queries['interval'] ?? '50');
+const interval = parseInt(queries['interval'] ?? '10');
 
 console.log("cell-automata", {rule, init, length});
 
