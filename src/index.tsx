@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
-import { InitialType } from './types/InitialType';
-import reportWebVitals from './reportWebVitals';
+import { toInitialType } from './types/InitialType';
+import { toBoundaryType } from './types/BoundaryType';
 
+import reportWebVitals from './reportWebVitals';
 import './index.css';
 
 type Query = {
@@ -16,19 +17,7 @@ const queries = window.location.search.slice(1).split('&').reduce((o, kv) => {
   return o;
 }, {} as Query);
 
-function toInitialType(initType?: string): InitialType {
-  switch (initType) {
-    case 'blank':
-    case 'left':
-    case 'center':
-    case 'right':
-    case 'random':
-    case 'all':
-      return initType;
-    default:
-      return 'center';
-  }
-}
+
 
 const init = toInitialType(queries['init']);
 const rule = parseInt(queries['rule'] ?? '90');
@@ -37,6 +26,7 @@ const batch = parseInt(queries['batch'] ?? '1');
 const max = parseInt(queries['max'] ?? '200');
 const interval = parseInt(queries['interval'] ?? '10');
 const cellSize = parseInt(queries['cellsize'] ?? '8');
+const boundary = toBoundaryType(queries['boundary']);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -48,6 +38,7 @@ ReactDOM.render(
       batch={batch}
       max={max}
       size={cellSize}
+      boundary={boundary}
     />
   </React.StrictMode>,
   document.getElementById('root')

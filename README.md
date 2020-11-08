@@ -22,6 +22,9 @@ Demonstration of Elementary Cellular Automata(ECA) on Web.
   - [length=31](https://ma38su.github.io/cellular-automata/?length=31&rule=150&init=center)
   - [length=100](https://ma38su.github.io/cellular-automata/?length=100&rule=150&init=center)
 - [Rule 184](https://ma38su.github.io/cellular-automata/?length=100&rule=184&init=random)
+  - [51:49](https://ma38su.github.io/cellular-automata?rule=184&max=300&init=center&batch=49&length=100)
+  - [50:50](https://ma38su.github.io/cellular-automata?rule=184&max=300&init=center&batch=50&length=100)
+  - [49:51](https://ma38su.github.io/cellular-automata?rule=184&max=300&init=center&batch=51&length=100)
 - [Rule 249](https://ma38su.github.io/cellular-automata/?length=100&rule=249&init=random)
 
 ### Test
@@ -44,7 +47,7 @@ You can change some paramters using URL query.
 - max: uint = 200
 - interval: uint = 10
 - cellsize: uint = 8
-
+- boundary: 'periodic' | 'reflective' | 'true' | 'false' = 'periodic'
 
 ### Reference
 

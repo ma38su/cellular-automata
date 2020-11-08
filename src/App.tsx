@@ -1,5 +1,6 @@
 import React from 'react';
 import { CellAutomata } from './components/CellAutomata';
+import { BoundaryType } from './types/BoundaryType';
 import { InitialType } from './types/InitialType';
 
 function toStateMachine(rule: number) {
@@ -11,12 +12,42 @@ function toStateMachine(rule: number) {
   return rules;
 }
 
-function nextState(stateMachine: boolean[], states: boolean[], i: number): boolean {
-  const i0 = i - 1;
-  const i2 = i + 1;
-  const b0 = (i0 >= 0 && states[i0]) ? 4 : 0;
+function stateLeft(boundary: BoundaryType, states: boolean[], i: number): boolean {
+  if (i < 0) {
+    switch (boundary) {
+      case 'true':
+        return true;
+      case 'false':
+        return false;
+      case 'periodic':
+        return states[states.length - 1];
+      case 'reflective':
+        return states[0];
+    }
+  }
+  return states[i];
+}
+
+function stateRight(boundary: BoundaryType, states: boolean[], i: number): boolean {
+  if (i >= states.length) {
+    switch (boundary) {
+      case 'true':
+        return true;
+      case 'false':
+        return false;
+      case 'periodic':
+        return states[0];
+      case 'reflective':
+        return states[states.length - 1];
+    }
+  }
+  return states[i];
+}
+
+function nextState(stateMachine: boolean[], boundary: BoundaryType, states: boolean[], i: number): boolean {
+  const b0 = stateLeft(boundary, states, i - 1) ? 4 : 0;
   const b1 = states[i] ? 2 : 0;
-  const b2 = (i2 < states.length && states[i2]) ? 1 : 0;
+  const b2 = stateRight(boundary, states, i + 1) ? 1 : 0;
   return stateMachine[b0 | b1 | b2];
 }
 
@@ -54,6 +85,7 @@ type Props = {
   max: number;
   interval: number;
   size: number;
+  boundary: BoundaryType;
 }
 
 type State = {
@@ -85,6 +117,7 @@ function App(props: Props) {
     max,
     interval,
     size: cellSize,
+    boundary,
   } = props;
 
   const maxSeq = max < 1000 ? max : 1000;
@@ -102,7 +135,7 @@ function App(props: Props) {
         if (comps.length >= maxSeq) return prev;
 
         const newCells = [...cells.keys()]
-          .map(i => nextState(stateMachines, cells, i));
+          .map(i => nextState(stateMachines, boundary, cells, i));
         const i = comps.length;
         const newComps = [
           ...comps,
@@ -122,7 +155,7 @@ function App(props: Props) {
     return () => {
       clearInterval(id);
     };
-  }, [stateMachines, maxSeq, interval, cellSize]);
+  }, [stateMachines, boundary, maxSeq, interval, cellSize]);
 
   return (
     <svg>
