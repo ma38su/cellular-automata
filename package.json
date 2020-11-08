@@ -1,5 +1,5 @@
 {
-  "name": "cell-automata",
+  "name": "cellular-automata",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
