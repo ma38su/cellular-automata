@@ -1,8 +1,6 @@
 # cellular-automata
 
-Demonstration of Cellular Automata on Web.
-
-This automata is first order automata.
+Demonstration of Elementary Cellular Automata(ECA) on Web.
 
 ### Demo
 
