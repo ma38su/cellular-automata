@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.fcf71a69.chunk.css",
-    "main.js": "/static/js/main.aa0eb518.chunk.js",
-    "main.js.map": "/static/js/main.aa0eb518.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.d6d6b020.js",
-    "runtime-main.js.map": "/static/js/runtime-main.d6d6b020.js.map",
-    "static/js/2.09a0090d.chunk.js": "/static/js/2.09a0090d.chunk.js",
-    "static/js/2.09a0090d.chunk.js.map": "/static/js/2.09a0090d.chunk.js.map",
-    "static/js/3.1ef24fb2.chunk.js": "/static/js/3.1ef24fb2.chunk.js",
-    "static/js/3.1ef24fb2.chunk.js.map": "/static/js/3.1ef24fb2.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.fcf71a69.chunk.css.map": "/static/css/main.fcf71a69.chunk.css.map",
-    "static/js/2.09a0090d.chunk.js.LICENSE.txt": "/static/js/2.09a0090d.chunk.js.LICENSE.txt"
+    "main.css": "/cellular-automata/static/css/main.fcf71a69.chunk.css",
+    "main.js": "/cellular-automata/static/js/main.aa0eb518.chunk.js",
+    "main.js.map": "/cellular-automata/static/js/main.aa0eb518.chunk.js.map",
+    "runtime-main.js": "/cellular-automata/static/js/runtime-main.234724d7.js",
+    "runtime-main.js.map": "/cellular-automata/static/js/runtime-main.234724d7.js.map",
+    "static/js/2.09a0090d.chunk.js": "/cellular-automata/static/js/2.09a0090d.chunk.js",
+    "static/js/2.09a0090d.chunk.js.map": "/cellular-automata/static/js/2.09a0090d.chunk.js.map",
+    "static/js/3.1ef24fb2.chunk.js": "/cellular-automata/static/js/3.1ef24fb2.chunk.js",
+    "static/js/3.1ef24fb2.chunk.js.map": "/cellular-automata/static/js/3.1ef24fb2.chunk.js.map",
+    "index.html": "/cellular-automata/index.html",
+    "static/css/main.fcf71a69.chunk.css.map": "/cellular-automata/static/css/main.fcf71a69.chunk.css.map",
+    "static/js/2.09a0090d.chunk.js.LICENSE.txt": "/cellular-automata/static/js/2.09a0090d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d6d6b020.js",
+    "static/js/runtime-main.234724d7.js",
     "static/js/2.09a0090d.chunk.js",
     "static/css/main.fcf71a69.chunk.css",
     "static/js/main.aa0eb518.chunk.js"
