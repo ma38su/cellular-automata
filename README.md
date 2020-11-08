@@ -27,13 +27,6 @@ Demonstration of Elementary Cellular Automata(ECA) on Web.
   - [49:51](https://ma38su.github.io/cellular-automata?rule=184&max=300&init=center&batch=51&length=100)
 - [Rule 249](https://ma38su.github.io/cellular-automata/?length=100&rule=249&init=random)
 
-### Test
-
-Run on local environment
-```
-yarn start
-```
-
 ### Paramters
 
 You can change some paramters using URL query.
