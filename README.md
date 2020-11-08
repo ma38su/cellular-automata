@@ -8,6 +8,7 @@ This automata is first order automata.
 
 - [Rule 1](https://ma38su.github.io/cellular-automata/?length=100&rule=1&init=center)
 - [Rule 4](https://ma38su.github.io/cellular-automata/?length=100&rule=4&init=random)
+- [Rule 5](https://ma38su.github.io/cellular-automata/?length=100&rule=5&init=random)
 - [Rule 15](https://ma38su.github.io/cellular-automata/?length=100&rule=15&init=random)
 - [Rule 18](https://ma38su.github.io/cellular-automata/?length=100&rule=18&init=random)
 - [Rule 30](https://ma38su.github.io/cellular-automata/?length=100&rule=30&init=center)
