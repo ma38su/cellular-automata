@@ -99,6 +99,8 @@ function App(props: Props) {
     const id = setInterval(() => {
       setState(prev => {
         const { cells, comps } = prev;
+        if (comps.length >= maxSeq) return prev;
+
         const newCells = [...cells.keys()]
           .map(i => nextState(stateMachines, cells, i));
         const i = comps.length;
