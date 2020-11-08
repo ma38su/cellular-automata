@@ -2,8 +2,6 @@ import React from 'react';
 import { CellAutomata } from './components/CellAutomata';
 import { InitialType } from './types/InitialType';
 
-const cellSize = 6;
-
 function toStateMachine(rule: number) {
   const rules = [];
   for (const i of [...new Array(8).keys()]) {
@@ -55,6 +53,7 @@ type Props = {
   length: number;
   max: number;
   interval: number;
+  size: number;
 }
 
 type State = {
@@ -68,39 +67,47 @@ function App(props: Props) {
     length,
     batch,
     max,
-    interval
+    interval,
+    size: cellSize,
   } = props;
 
   const maxSeq = max < 1000 ? max : 1000;
 
-  const [ stateMachines ] = React.useState(toStateMachine(rule));
+  const stateMachines = React.useMemo(() => {
+    return toStateMachine(rule);
+  }, [rule]);
+
   const [ state, setState ] = React.useState<State>({
     cells: initialState(initType, batch, length),
     comps: [],
   });
 
   React.useEffect(() => {
-    console.log("effect");
     const id = setInterval(() => {
       setState(prev => {
         const { cells, comps } = prev;
         const newCells = [...cells.keys()]
           .map(i => nextState(stateMachines, cells, i));
         const i = comps.length;
-        return {
-          comps:[...comps,
+        const newComps = [
+          ...comps,
           <CellAutomata
             y={cellSize * i}
             size={cellSize}
             state={newCells}
             key={i}
-          />],
+          />
+        ];
+        return {
+          comps: newComps,
           cells: newCells,
         };
       });
     }, interval);
-    return () => clearInterval(id);
-  }, [stateMachines, maxSeq, interval]);
+    return () => {
+      clearInterval(id);
+    };
+  }, [stateMachines, maxSeq, interval, cellSize]);
 
   return (
     <svg>
@@ -109,4 +116,4 @@ function App(props: Props) {
   );
 }
 
-export default App;
+export { App };

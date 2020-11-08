@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { App } from './App';
 import { InitialType } from './types/InitialType';
+import reportWebVitals from './reportWebVitals';
+
+import './index.css';
 
 type Query = {
   [key: string] : string;
@@ -35,8 +36,7 @@ const length = parseInt(queries['length'] ?? '200');
 const batch = parseInt(queries['batch'] ?? '1');
 const max = parseInt(queries['max'] ?? '200');
 const interval = parseInt(queries['interval'] ?? '10');
-
-console.log("cell-automata", {rule, init, length});
+const cellSize = parseInt(queries['cellsize'] ?? '8');
 
 ReactDOM.render(
   <React.StrictMode>
@@ -47,6 +47,7 @@ ReactDOM.render(
       interval={interval}
       batch={batch}
       max={max}
+      size={cellSize}
     />
   </React.StrictMode>,
   document.getElementById('root')

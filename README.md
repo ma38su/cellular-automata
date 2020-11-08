@@ -39,12 +39,13 @@ You can change some paramters using URL query.
 
 ``?rule=90&init=center&length=200&max=200&batch=1``
 
-- rule: [0 - 255]
-- init: 'blank' | 'left' | 'center' | 'right' | 'random' | 'all'
-- length: uint
-- batch: uint
-- max: uint
-- interval: uint
+- rule: [0 - 255] = 90
+- init: 'blank' | 'left' | 'center' | 'right' | 'random' | 'all' = 'center'
+- length: uint = 100
+- batch: uint = 1
+- max: uint = 200
+- interval: uint = 10
+- cellsize: uint = 8
 
 
 ### Reference
