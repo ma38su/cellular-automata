@@ -20,7 +20,7 @@ function nextState(stateMachine: boolean[], states: boolean[], i: number): boole
   return stateMachine[b0 | b1 | b2];
 }
 
-function initialState(type: InitialType, batch: number, length: number) {
+function initCells(type: InitialType, batch: number, length: number) {
   const states = [...new Array(length).keys()].map(i => false);
   switch (type) {
     case 'left':
@@ -61,8 +61,24 @@ type State = {
   comps: JSX.Element[];
 };
 
+function initState(type: InitialType, batch: number, length: number, cellSize: number) {
+  const cells = initCells(type, batch, length);
+  return {
+    cells,
+    comps: [
+      <CellAutomata
+        y={0}
+        size={cellSize}
+        state={cells}
+        key={0}
+      />
+    ],
+  }
+}
+
 function App(props: Props) {
-  const { initType,
+  const {
+    initType,
     rule,
     length,
     batch,
@@ -77,10 +93,7 @@ function App(props: Props) {
     return toStateMachine(rule);
   }, [rule]);
 
-  const [ state, setState ] = React.useState<State>({
-    cells: initialState(initType, batch, length),
-    comps: [],
-  });
+  const [ state, setState ] = React.useState<State>(initState(initType, batch, length, cellSize));
 
   React.useEffect(() => {
     const id = setInterval(() => {
