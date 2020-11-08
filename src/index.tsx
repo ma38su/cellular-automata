@@ -32,12 +32,22 @@ function toInitialType(initType?: string): InitialType {
 const init = toInitialType(queries['init']);
 const rule = parseInt(queries['rule'] ?? '90');
 const length = parseInt(queries['length'] ?? '200');
+const batch = parseInt(queries['batch'] ?? '1');
+const max = parseInt(queries['max'] ?? '200');
+const interval = parseInt(queries['interval'] ?? '100');
 
 console.log("cell-automata", {rule, init, length});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App initType={init} rule={rule} length={length}/>
+    <App
+      initType={init}
+      rule={rule}
+      length={length}
+      interval={interval}
+      batch={batch}
+      max={max}
+    />
   </React.StrictMode>,
   document.getElementById('root')
 );

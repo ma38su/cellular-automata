@@ -2,8 +2,7 @@ import React from 'react';
 import { CellAutomata } from './components/CellAutomata';
 import { InitialType } from './types/InitialType';
 
-const cellSize = 10;
-const maxSeq = 200;
+const cellSize = 6;
 
 function toStateMachine(rule: number) {
   const rules = [];
@@ -23,17 +22,23 @@ function nextState(stateMachine: boolean[], states: boolean[], i: number): boole
   return stateMachine[b0 | b1 | b2];
 }
 
-function initialState(type: InitialType, length: number) {
+function initialState(type: InitialType, batch: number, length: number) {
   const states = [...new Array(length).keys()].map(i => false);
   switch (type) {
     case 'left':
-      states[0] = true;
+      for (let i = 0; i < batch; ++i) {
+        states[i] = true;
+      }
       break;
     case 'center':
-      states[Math.floor(length / 2)] = true;
+      for (let i = 0; i < batch; ++i) {
+        states[Math.floor(i + (length - batch) / 2)] = true;
+      }
       break;
     case 'right':
-      states[states.length - 1] = true;
+      for (let i = 0; i < batch; ++i) {
+        states[states.length - 1 - i] = true;
+      }
       break;
     case 'all':
       return states.map(_ => true);
@@ -45,14 +50,26 @@ function initialState(type: InitialType, length: number) {
 
 type Props = {
   initType: InitialType,
+  batch: number;
   rule: number;
   length: number;
+  max: number;
+  interval: number;
 }
 
 function App(props: Props) {
-  const { initType, rule, length } = props;
+  const { initType,
+    rule,
+    length,
+    batch,
+    max,
+    interval
+  } = props;
+
+  const maxSeq = max < 1000 ? max : 1000;
+
   const [ stateMachines ] = React.useState(toStateMachine(rule));
-  const [ cellTable, setCellTable ] = React.useState<boolean[][]>([initialState(initType, length)]);
+  const [ cellTable, setCellTable ] = React.useState<boolean[][]>([initialState(initType, batch, length)]);
 
   React.useEffect(() => {
     const id = setInterval(() => {
@@ -67,9 +84,9 @@ function App(props: Props) {
         });
         return [...table, newStates];
       });
-    }, 500);
+    }, interval);
     return () => clearInterval(id);
-  }, [stateMachines]);
+  }, [stateMachines, maxSeq, interval]);
   return (
     <svg>
       {

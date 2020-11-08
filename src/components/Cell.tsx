@@ -10,8 +10,8 @@ type Props = {
 function Cell(props: Props) {
   const { x, y, size, state} = props;
 
-  const stroke = '#222';
-  const color = state ? '#777' : '#EEE';
+  const stroke = '#444';
+  const color = state ? '#555' : '#FFF';
 
   return (<rect x={x} y={y} width={size} height={size} fill={color} stroke={stroke} />);
 }
