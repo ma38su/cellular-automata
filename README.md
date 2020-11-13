@@ -44,7 +44,8 @@ You can change some paramters using URL query.
 
 ### Related Project
 
-[game-of-life](https://github.com/ma38su/game-of-life)
+- [game-of-life](https://github.com/ma38su/game-of-life)
+- [langton-ant](https://github.com/ma38su/langton-ant)
 
 ### Reference
 
